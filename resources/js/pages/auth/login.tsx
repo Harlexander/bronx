@@ -17,7 +17,7 @@ interface LoginProps {
     canRegister: boolean;
 }
 
-export default function Login({
+export default function Login({ 
     status,
     canResetPassword,
     canRegister,
