@@ -53,7 +53,7 @@ export default function Footer() {
 
         {/* Social Links */}
         <div className="border-t border-primary pt-8 flex justify-between items-center">
-          <p className="text-sm text-purple-200">&copy; 2025 enercos. All rights reserved.</p>
+          <p className="text-sm text-purple-200">&copy; 2025 Bronx. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="text-purple-200 hover:text-yellow-400 transition">
               <Facebook className="w-5 h-5" />

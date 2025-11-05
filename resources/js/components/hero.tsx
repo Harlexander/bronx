@@ -16,13 +16,13 @@ export default function Hero() {
       title: "Power for people who don’t run out",
       description:
         "Long‑lasting alkaline performance for toys, remotes, gaming controllers and more. Stock up and keep devices ready.",
-      cta: "SHOP NOW →",
+      cta: "View Products →",
     },
     {
       title: "Reliable energy. Everyday.",
       description:
         "From AAA to 9V, BronX batteries deliver consistent power you can trust at home and on the go.",
-      cta: "EXPLORE →",
+      cta: "Shop Now →",
     },
   ]
 
