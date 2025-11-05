@@ -11,21 +11,21 @@ import {
 const TESTIMONIALS = [
   {
     quote:
-      "Investing with Bronxx has been seamless. The dashboard is clear and the returns are transparent.",
+      "The Bronxx Core Battery powers my delivery scooter for an entire shift. Zero voltage sag and charges fast.",
     name: "Ava Thompson",
-    title: "Product Lead, Northwind",
+    title: "Courier, Northwind Logistics",
   },
   {
     quote:
-      "Finally a platform that treats retail investors like pros. KYC was quick and support is stellar.",
+      "We swapped our studio lights to Bronxx packs—lighter, cooler, and the runtime is night-and-day better.",
     name: "Marcus Lee",
-    title: "Engineer, Acme Co",
+    title: "Cinematographer, Acme Studio",
   },
   {
     quote:
-      "I moved a portion of my portfolio here and love the clarity around risk and timeline.",
+      "Camping weekends got easier. Two modules kept our fridge and phones running with plenty left on Monday.",
     name: "Priya Patel",
-    title: "Analyst, Contoso",
+    title: "Outdoor Enthusiast",
   },
 ]
 
@@ -48,8 +48,8 @@ export default function Testimonials() {
     <section className="relative bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 py-24 md:py-36">
         <div className="text-center mb-10 md:mb-14">
-          <p className="text-xs md:text-sm font-semibold tracking-widest text-primary/70 mb-2">TESTIMONIALS</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">What our clients say</h2>
+          <p className="text-xs md:text-sm font-semibold tracking-widest text-primary/70 mb-2">Testimonials</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">What our customers say</h2>
         </div>
 
         <div className="relative">
