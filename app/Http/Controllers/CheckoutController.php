@@ -94,7 +94,7 @@ class CheckoutController extends Controller
             'X-Api-Key' => env('ESPEES_API_KEY'),
         ])->post('https://api.espees.org/v2/payment/product', [
             'product_sku' => $transaction->transaction_id,
-            'narration' => 'Order payment for CLM Store',
+            'narration' => 'Bronxx Order Payment',
             'price' => 0.001,
             'merchant_wallet' => env('ESPEES_MERCHANT_WALLET'),
             'success_url' => $return_url,
