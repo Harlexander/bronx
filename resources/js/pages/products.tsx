@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useSessionCart } from "@/hooks/use-session-cart"
 import { ProductType } from "@/types"
+import { ShoppingBasket, ShoppingCart } from "lucide-react"
+import CurrencyFormat from "@/components/currency"
 
 
 export default function Products({ products }: { products: ProductType[] }) {
@@ -52,7 +54,9 @@ export default function Products({ products }: { products: ProductType[] }) {
                   <h3 className="text-xs sm:text-sm font-semibold text-slate-900">{p.name}</h3>
                   {p.description && <p className="text-xs sm:text-sm text-slate-600 mt-1 line-clamp-1">{p.description}</p>}
                   <div className="mt-4 flex items-center justify-between text-sm sm:text-base">
+                    <CurrencyFormat>
                     <span className="text-xs sm:text-sm font-semibold text-slate-900">{p.price}</span>
+                    </CurrencyFormat>
                   </div>
                 </div>
               </article>
@@ -76,7 +80,9 @@ export default function Products({ products }: { products: ProductType[] }) {
               )}
             </div>
             <div>
-              <div className="text-2xl font-semibold text-slate-900">{selectedProduct?.price}</div>
+              <CurrencyFormat>
+                <div className="text-2xl font-semibold text-slate-900">{selectedProduct?.price}</div>
+              </CurrencyFormat>
               {selectedProduct?.description && (
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedProduct.description}</p>
               )}
@@ -102,12 +108,12 @@ export default function Products({ products }: { products: ProductType[] }) {
               </div>
               <div className="mt-6 flex gap-3">
                 <Button
-                  variant="outline"
                   onClick={() => {
                     if (selectedProduct) add(selectedProduct.id, quantity)
                     close()
                   }}
                 >
+                  <ShoppingCart className="w-4 h-4" />
                   Add to cart
                 </Button>
                 <Button variant="ghost" onClick={close}>Cancel</Button>

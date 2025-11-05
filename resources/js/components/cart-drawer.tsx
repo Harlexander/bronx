@@ -5,6 +5,7 @@ import { useSessionCart } from "@/hooks/use-session-cart"
 import { SharedData } from "@/types"
 import { usePage } from "@inertiajs/react"
 import { Link } from "@inertiajs/react"
+import CurrencyFormat from "./currency"
 
 export default function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const { update, remove, clear } = useSessionCart()
@@ -29,7 +30,9 @@ export default function CartDrawer({ open, onOpenChange }: { open: boolean; onOp
               <img src={product.image} alt={product.name} className="w-16 h-16 object-cover rounded" />
               <div className="flex-1">
                 <div className="font-semibold text-slate-900">{product.name}</div>
-                <div className="text-slate-600 text-sm">{product.price}</div>
+                <CurrencyFormat>
+                  <div className="text-slate-600 text-sm">{product.price}</div>
+                </CurrencyFormat>
                 <div className="mt-2 flex items-center gap-2">
                   <button className="p-1 rounded border" onClick={() => update(String(id), Math.max(1, quantity - 1))}><Minus className="w-4 h-4" /></button>
                   <span className="w-8 text-center text-slate-900">{quantity}</span>

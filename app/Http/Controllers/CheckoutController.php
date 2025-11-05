@@ -98,7 +98,7 @@ class CheckoutController extends Controller
             'price' => 0.001,
             'merchant_wallet' => env('ESPEES_MERCHANT_WALLET'),
             'success_url' => $return_url,
-            'fail_url' => "$app_url/cart",
+            'fail_url' => "$app_url/checkout",
             'user_data' => [
                 'id' => $transaction->user_id ?? 'guest',
                 'email' => $email

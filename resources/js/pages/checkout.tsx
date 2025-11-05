@@ -10,6 +10,7 @@ import { Plus, Minus, Trash2 } from "lucide-react"
 import { useSessionCart } from "@/hooks/use-session-cart"
 import axios from "axios"
 import LoginDialog from "@/components/login-dialog"
+import CurrencyFormat from "@/components/currency"
 
 export default function Checkout() {
   const { updateAppearance } = useAppearance()
@@ -43,6 +44,28 @@ export default function Checkout() {
     setIsSubmitting(true)
 
     try {
+      // If user is not authenticated and not in explicit sign-in mode,
+      // attempt registration first (only when a password is supplied).
+      if (isGuest && !showSignIn && guestForm.password && guestForm.password.trim().length >= 6) {
+        try {
+          await axios.post('/register', {
+            name: guestForm.name,
+            email: guestForm.email,
+            password: guestForm.password,
+            password_confirmation: guestForm.password,
+          })
+        } catch (regErr: any) {
+          // Surface registration validation or server errors and stop
+          setError(
+            regErr.response?.data?.message ||
+              regErr.response?.data?.error ||
+              'Unable to register. Please check your details and try again.'
+          )
+          setIsSubmitting(false)
+          return
+        }
+      }
+
       // Get delivery address based on mode
       const address = isGuest
         ? showSignIn
@@ -56,11 +79,7 @@ export default function Checkout() {
         return
       }
 
-      // Handle login separately if sign-in mode
-      if (isGuest && showSignIn) {
-        // TODO: Handle login separately - for now we'll just proceed with checkout
-        // You can add login logic here or redirect to login page
-      }
+      // Handle login separately if sign-in mode (not implemented): proceed as guest
 
       // Submit checkout
       const payload: { payment_method: string; delivery_address: string; email?: string } = {
@@ -68,7 +87,7 @@ export default function Checkout() {
         delivery_address: address,
       }
 
-      // Include email for guest checkout
+      // Include email for guest checkout when still unauthenticated
       if (isGuest) {
         if (showSignIn) {
           payload.email = signInForm.email
@@ -255,7 +274,9 @@ export default function Checkout() {
                       onChange={(e) => setPaymentMethod(e.target.value)}
                       className="w-4 h-4"
                     />
-                    <span className="font-medium">Esprees</span>
+                    <CurrencyFormat>
+                      <span className="font-medium">Espees</span>
+                    </CurrencyFormat>
                   </label>
                 </div>
               </div>
@@ -315,15 +336,21 @@ export default function Checkout() {
                 <div className="space-y-2 mb-6">
                   <div className="flex justify-between text-slate-600">
                     <span>Subtotal</span>
-                    <span>{cart.total}</span>
+                    <CurrencyFormat>
+                      <span>{cart.total}</span>
+                    </CurrencyFormat>
                   </div>
                   <div className="flex justify-between text-slate-600">
                     <span>Shipping</span>
-                    <span>0.00</span>
+                    <CurrencyFormat>
+                      <span>0.00</span>
+                    </CurrencyFormat>
                   </div>
                   <div className="flex justify-between font-semibold text-lg pt-2 border-t">
-                    <span>Total</span>
-                    <span>{cart.total}</span>
+                    <span>Total</span>  
+                    <CurrencyFormat>
+                      <span>{cart.total}</span>
+                    </CurrencyFormat>
                   </div>
                 </div>
 
